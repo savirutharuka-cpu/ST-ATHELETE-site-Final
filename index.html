@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ST ATHLETE | Fitness Coaching by Saviru Tharuka</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #DC2626;
+            --dark-bg: #050505;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html.menu-open {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .font-heading {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(220, 38, 38, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(220, 38, 38, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #DC2626;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float-particle 15s infinite;
+        }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Floating Glow Orbs */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); transform: scale(1); }
+            50% { box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6); transform: scale(1.05); }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        /* Text Effects */
+        .text-gradient {
+            background: linear-gradient(135deg, #DC2626 0%, #FF6B6B 50%, #DC2626 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5), 0 0 40px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            animation: glitch-skew 1s infinite;
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(-1deg); }
+            80% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #DC2626;
+            box-shadow: 0 0 10px #DC2626;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #DC2626;
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #DC2626, #991B1B);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .btn-primary:hover::before {
+            animation: shine 0.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #DC2626;
+            color: #DC2626;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #DC2626;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Program Cards */
+        .program-card {
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border: 1px solid #262626;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .program-card:hover::before {
+            left: 100%;
+        }
+
+        .program-card:hover {
+            border-color: #DC2626;
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(220, 38, 38, 0.2),
+                0 0 0 1px rgba(220, 38, 38, 0.3);
+        }
+
+        .program-card.featured {
+            border-color: #DC2626;
+            box-shadow: 0 0 40px rgba(220, 38, 38, 0.15);
+            animation: border-pulse 2s infinite;
+        }
+
+        @keyframes border-pulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(220, 38, 38, 0.15); }
+            50% { box-shadow: 0 0 60px rgba(220, 38, 38, 0.25); }
+        }
+
+        /* Checkmark Animation */
+        .check-item {
+            transition: all 0.3s ease;
+        }
+
+        .check-item:hover {
+            transform: translateX(5px);
+            color: white;
+        }
+
+        .check-item:hover i {
+            animation: check-bounce 0.5s ease;
+        }
+
+        @keyframes check-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* Transformation Cards */
+        .transform-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid #262626;
+            transition: all 0.5s ease;
+        }
+
+        .transform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(220, 38, 38, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+            z-index: 1;
+        }
+
+        .transform-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .transform-card img {
+            transition: all 0.8s ease;
+        }
+
+        .transform-card:hover {
+            border-color: #DC2626;
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .transform-card:hover img {
+            transform: scale(1.15);
+        }
+
+        .transform-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            padding: 30px;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+        }
+
+        .transform-card:hover .transform-overlay {
+            transform: translateY(0);
+        }
+
+        /* Stats Counter Animation */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+            background: linear-gradient(135deg, #fff, #DC2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Floating Elements */
+        .float-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .float-delay-1 { animation-delay: 0s; }
+        .float-delay-2 { animation-delay: 2s; }
+        .float-delay-3 { animation-delay: 4s; }
+
+        /* Rotating Badge */
+        .rotate-slow {
+            animation: rotate-slow 20s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Marquee Text */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            border: 1px solid #333;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 480px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Form Inputs */
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            border-radius: 12px;
+            color: white;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #DC2626;
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu - FIXED */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            background: rgba(5,5,5,0.98);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            overflow: hidden;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            width: 100%;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 100%;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: #DC2626;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #DC2626, #FF6B6B);
+            z-index: 10001;
+            transition: width 0.1s;
+            box-shadow: 0 0 10px #DC2626;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #DC2626, #991B1B);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #DC2626;
+        }
+
+        /* ============================================
+           HERO SECTION - NO SCROLL ANIMATIONS
+           All elements are static, no fade/slide on scroll
+           ============================================ */
+        
+        /* Static Hero Content - No animations */
+        .hero-content-static {
+            opacity: 1;
+            transform: none;
+            /* NO animation properties */
+        }
+
+        /* Static Text - No slide up animation */
+        .hero-text-static {
+            display: block;
+            opacity: 1;
+            transform: none;
+            /* NO animation properties */
+        }
+
+        /* Static Buttons - No floating animation */
+        .hero-btn-static {
+            animation: none !important;
+            transform: none !important;
+        }
+
+        /* Remove ALL hero scroll-triggered animations */
+        #home .hero-content,
+        #home .slide-up-text,
+        #home .float-hero,
+        #home [data-aos],
+        #home [data-aos-delay] {
+            opacity: 1 !important;
+            transform: none !important;
+            animation: none !important;
+            transition: none !important;
+        }
+
+        /* Keep only hover effects on buttons, no scroll animations */
+        #home .btn-primary:hover,
+        #home .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* Static decorative elements - no pulse animation that responds to scroll */
+        .pulse-ring-static {
+            position: absolute;
+            border: 2px solid rgba(220, 38, 38, 0.3);
+            border-radius: 50%;
+            /* No animation that changes with scroll */
+        }
+
+        /* Hero Background - Fixed, no parallax */
+
+        /* Static glow text - no animation */
+        .glow-text-static {
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+            /* No pulsing animation */
+        }
+
+        /* Section reveal animations - only for non-hero sections */
+        section:not(#home) {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section:not(#home).visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Card Hover Effects */
+        .enhanced-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .enhanced-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(220, 38, 38, 0.2);
+        }
+
+        /* Popular Badge */
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #DC2626, #991B1B);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+            z-index: 10;
+            white-space: nowrap;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        /* About Section */
+        .about-text-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Logo spacing */
+        .logo-text {
+            letter-spacing: 0.05em;
+        }
+
+        /* Coach image */
+        .coach-image-container {
+            position: relative;
+            overflow: visible;
+        }
+
+        .coach-image-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .coach-image-wrapper img {
+            display: block;
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bg-grid {
+                background-size: 30px 30px;
+            }
+            
+            .particle {
+                display: none;
+            }
+
+            .popular-badge {
+                font-size: 10px;
+                padding: 6px 16px;
+                top: -10px;
+            }
+
+            .mobile-menu {
+                gap: 24px;
+            }
+
+            .mobile-menu-content {
+                gap: 24px;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body class="antialiased selection:bg-red-600 selection:text-white">
+
+<!-- Background Video -->
+<video autoplay muted loop playsinline
+class="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none">
+    <source src="Video/a-cinematic-fitness-video-sony-fx6-2160-ytshorts.savetube.me.mp4" type="video/mp4">
+</video>
+<div class="fixed inset-0 bg-black/60 z-0 pointer-events-none"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Animated Background Grid -->
+    <div class="bg-grid"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Floating Glow Orbs -->
+    <div class="glow-orb w-96 h-96 bg-red-600 top-0 left-0 float-delay-1"></div>
+    <div class="glow-orb w-64 h-64 bg-red-800 bottom-0 right-0 float-delay-2"></div>
+
+    
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/94705732609?text=Start%20your%20transformation%20from%20here" target="_blank" class="whatsapp-float magnetic-btn">
+        <i class="fab fa-whatsapp text-3xl text-white"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-black/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-heading font-black text-3xl tracking-tighter glitch group logo-text">
+                <span class="text-white group-hover:text-red-600 transition-colors">ST</span><span class="text-red-600 group-hover:text-white transition-colors"> ATHLETE</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="nav-link text-white text-sm tracking-wide">HOME</a>
+                <a href="#about" class="nav-link text-white text-sm tracking-wide">ABOUT</a>
+                <a href="#programs" class="nav-link text-white text-sm tracking-wide">FITNESS PLANS</a>
+                <a href="#clients" class="nav-link text-white text-sm tracking-wide">CLIENTS</a>
+                <a href="#contact" class="nav-link text-white text-sm tracking-wide">CONTACT</a>
+                
+                <div id="auth-buttons" class="flex items-center gap-4">
+                    <button onclick="openModal('login')" class="text-white text-sm font-medium hover:text-red-600 transition-colors relative group">
+                        LOGIN
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all group-hover:w-full"></span>
+                    </button>
+                    <button onclick="openModal('signup')" class="btn-primary px-6 py-2.5 rounded-full text-sm font-bold">
+                        SIGN UP
+                    </button>
+                </div>
+                
+                <div id="user-menu" class="hidden items-center gap-4">
+                    <button onclick="openDashboard()" class="flex items-center gap-2 text-white hover:text-red-600 transition-colors group">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center text-sm font-bold">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="text-sm font-medium">MY ACCOUNT</span>
+                    </button>
+                </div>
+            </div>
+
+            <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="absolute top-6 right-6 text-white text-3xl hover:rotate-90 transition-transform z-10" id="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="mobile-menu-content">
+            <a href="#home" class="font-heading text-3xl font-bold text-white hover:text-red-600 transition-colors hover:scale-110 transform">HOME</a>
+            <a href="#about" class="font-heading text-3xl font-bold text-white hover:text-red-600 transition-colors hover:scale-110 transform">ABOUT</a>
+            <a href="#programs" class="font-heading text-3xl font-bold text-white hover:text-red-600 transition-colors hover:scale-110 transform">FITNESS PLANS</a>
+            <a href="#clients" class="font-heading text-3xl font-bold text-white hover:text-red-600 transition-colors hover:scale-110 transform">CLIENTS</a>
+            <a href="#contact" class="font-heading text-3xl font-bold text-white hover:text-red-600 transition-colors hover:scale-110 transform">CONTACT</a>
+            
+            <div class="mt-8 flex flex-col gap-4 w-full px-12">
+                <button onclick="openModal('login'); closeMobileMenu();" class="btn-secondary py-4 rounded-xl font-bold text-lg">LOGIN</button>
+                <button onclick="openModal('signup'); closeMobileMenu();" class="btn-primary py-4 rounded-xl font-bold text-lg">SIGN UP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HERO SECTION - COMPLETELY STATIC
+         No scroll animations, no fade-in, no slide-up
+         Everything is visible immediately
+         ============================================ -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 hero-bg-static">
+        <!-- Decorative Elements - Static, no scroll animation -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="pulse-ring-static w-[600px] h-[600px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+            
+            <!-- Static shapes, no floating animation tied to scroll -->
+            <div class="deco-shape w-32 h-32 top-20 left-10 rotate-45 opacity-20" style="animation: none;"></div>
+            <div class="deco-shape w-24 h-24 bottom-40 right-20 rounded-full opacity-20" style="animation: none;"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <!-- Badge - Static -->
+            <div class="mb-8 inline-flex items-center gap-2 px-6 py-3 bg-red-600/10 border border-red-600/30 rounded-full text-red-500 font-semibold text-sm tracking-wider uppercase backdrop-blur-sm">
+                <span class="w-2 h-2 bg-red-600 rounded-full"></span>
+                Professional Fitness Coaching
+            </div>
+            
+            <!-- Main Headline - COMPLETELY STATIC -->
+            <h1 class="font-heading font-black text-6xl md:text-8xl text-white mb-8 leading-none tracking-tight">
+                <div class="overflow-hidden mb-2">
+                    <span class="block">FORGE YOUR</span>
+                </div>
+                <div class="overflow-hidden mb-2">
+                    <span class="block text-gradient glow-text-static">LEGACY</span>
+                </div>
+                <div class="overflow-hidden">
+                    <span class="block text-4xl md:text-6xl text-gray-400 font-light">TODAY</span>
+                </div>
+            </h1>
+
+            <!-- Subheadline - Static -->
+            <p class="text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed backdrop-blur-sm bg-black/20 p-6 rounded-2xl border border-white/5">
+                Science-based training meets unbreakable discipline. 
+                <span class="text-white font-semibold">Transform your physique</span> with Sri Lanka's premier coaching platform. 
+                Join <span class="text-red-500 font-bold">500+ athletes</span> who have already changed their lives.
+            </p>
+
+            <!-- CTA Buttons - COMPLETELY STATIC, no floating animation -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                <a href="https://wa.me/94705732609?text=Start%20your%20transformation%20from%20here" target="_blank" 
+                   class="btn-primary px-10 py-5 rounded-full font-bold text-lg flex items-center gap-3 group magnetic-btn neon-border">
+                    <span>START YOUR JOURNEY</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                </a>
+                <a href="#programs" class="btn-secondary px-10 py-5 rounded-full font-bold text-lg flex items-center gap-2 group magnetic-btn">
+                    <span>VIEW PROGRAMS</span>
+                    <i class="fas fa-chevron-down group-hover:translate-y-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Stats Row - Static -->
+            <div class="grid grid-cols-3 gap-8 max-w-3xl mx-auto mb-12">
+                <div class="text-center group cursor-pointer p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-red-600/50 transition-all hover:scale-105">
+                    <div class="stat-number font-heading text-4xl md:text-5xl font-black mb-2 group-hover:scale-110 transition-transform">500+</div>
+                    <div class="text-gray-500 text-sm uppercase tracking-wider group-hover:text-red-600 transition-colors">Transformations</div>
+                </div>
+                <div class="text-center group cursor-pointer p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-red-600/50 transition-all hover:scale-105">
+                    <div class="stat-number font-heading text-4xl md:text-5xl font-black mb-2 group-hover:scale-110 transition-transform">12K+</div>
+                    <div class="text-gray-500 text-sm uppercase tracking-wider group-hover:text-red-600 transition-colors">Sessions</div>
+                </div>
+                <div class="text-center group cursor-pointer p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-red-600/50 transition-all hover:scale-105">
+                    <div class="stat-number font-heading text-4xl md:text-5xl font-black mb-2 group-hover:scale-110 transition-transform">98%</div>
+                    <div class="text-gray-500 text-sm uppercase tracking-wider group-hover:text-red-600 transition-colors">Success Rate</div>
+                </div>
+            </div>
+
+            <!-- Trust Indicators - Static -->
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-red-600"></i>
+                    <span>Certified Coach</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-red-600"></i>
+                    <span>Science-Based</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-red-600"></i>
+                    <span>24/7 Support</span>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator - Static -->
+            
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <div class="py-8 bg-red-600 overflow-hidden border-y border-red-500 relative z-20">
+        <div class="marquee-container">
+            <div class="marquee-content font-heading text-2xl md:text-4xl font-black text-white tracking-wider">
+                <span class="mx-8">• FAT LOSS</span>
+                <span class="mx-8">• MUSCLE GAIN</span>
+                <span class="mx-8">• STRENGTH</span>
+                <span class="mx-8">• TRANSFORMATION</span>
+                <span class="mx-8">• RESULTS</span>
+                <span class="mx-8">• DISCIPLINE</span>
+                <span class="mx-8">• FAT LOSS</span>
+                <span class="mx-8">• MUSCLE GAIN</span>
+                <span class="mx-8">• STRENGTH</span>
+                <span class="mx-8">• TRANSFORMATION</span>
+                <span class="mx-8">• RESULTS</span>
+                <span class="mx-8">• DISCIPLINE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 relative overflow-hidden">
+        <div class="absolute top-20 right-10 w-32 h-32 border-2 border-red-600/20 rounded-full rotate-slow hidden lg:block"></div>
+        <div class="absolute bottom-20 left-10 w-24 h-24 bg-red-600/10 rounded-full float-element float-delay-2 hidden lg:block"></div>
+        <div class="absolute top-1/2 right-1/4 w-64 h-64 bg-red-600/5 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="space-y-8 about-text-container">
+                    <div class="inline-flex items-center gap-3 px-5 py-3 bg-red-600/10 border border-red-600/30 rounded-full float-element">
+                        <span class="w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
+                        <span class="text-red-500 font-bold text-sm uppercase tracking-widest">About The Coach</span>
+                    </div>
+                    
+                    <h2 class="font-heading font-black text-5xl md:text-7xl leading-none">
+                        SAVIRU<br>
+                        <span class="text-gradient">THARUKA</span>
+                    </h2>
+
+                    <div class="space-y-6 text-gray-400 text-lg leading-relaxed bg-black/40 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                        <p class="hover:text-white transition-colors duration-300">
+                            <span class="text-red-500 font-bold text-xl block mb-2">Undergraduate in Sport & Exercise Science</span>
+                            With a passion for transforming bodies through evidence-based programming. Every rep, every meal, every recovery session is calculated for maximum results.
+                        </p>
+                        <p class="hover:text-white transition-colors duration-300">
+                            Certified with <span class="text-white font-bold">IQN CPD in Bodybuilding & Nutrition</span> and holding an <span class="text-white font-bold">International Diploma in Fitness & Coaching</span>.
+                        </p>
+                        <p class="hover:text-white transition-colors duration-300">
+                            Whether you're a beginner or advanced athlete, my custom plans are designed to fit <span class="text-red-500 font-bold">YOUR</span> lifestyle and goals. No cookie-cutter programs—only personalized strategies that work.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <div class="px-6 py-3 bg-white/5 border border-white/10 rounded-xl flex items-center gap-3 hover:border-red-600/50 transition-all hover:scale-105 group cursor-pointer">
+                            <i class="fas fa-certificate text-red-600 text-xl group-hover:rotate-12 transition-transform"></i>
+                            <span class="text-sm font-bold">IQN CPD Certified</span>
+                        </div>
+                        <div class="px-6 py-3 bg-white/5 border border-white/10 rounded-xl flex items-center gap-3 hover:border-red-600/50 transition-all hover:scale-105 group cursor-pointer">
+                            <i class="fas fa-graduation-cap text-red-600 text-xl group-hover:rotate-12 transition-transform"></i>
+                            <span class="text-sm font-bold">Sport Science Degree</span>
+                        </div>
+                        <div class="px-6 py-3 bg-white/5 border border-white/10 rounded-xl flex items-center gap-3 hover:border-red-600/50 transition-all hover:scale-105 group cursor-pointer">
+                            <i class="fas fa-trophy text-red-600 text-xl group-hover:rotate-12 transition-transform"></i>
+                            <span class="text-sm font-bold">500+ Clients</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 pt-6">
+                        <a href="https://www.instagram.com/savirutharuka_07/" target="_blank" class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white hover:scale-110 hover:rotate-6 transition-all shadow-lg shadow-purple-600/30">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@mr_alaya_0519" target="_blank" class="w-14 h-14 rounded-2xl bg-white text-black flex items-center justify-center hover:scale-110 hover:-rotate-6 transition-all shadow-lg">
+                            <i class="fab fa-tiktok text-2xl"></i>
+                        </a>
+                        <a href="mailto:savirutharuka0406@gmail.com" class="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center text-white hover:scale-110 hover:rotate-6 transition-all shadow-lg shadow-red-600/30">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="coach-image-container relative">
+                    <div class="coach-image-wrapper relative rounded-3xl overflow-hidden border-2 border-white/10 group gradient-border">
+                        <div class="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                        <img src="Photos/coach.png" alt="Coach Saviru Tharuka" class="w-full h-[600px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105">
+                    </div>
+
+                    <div class="absolute -bottom-6 -right-6 bg-black border-2 border-red-600 p-6 rounded-2xl shadow-2xl float-element z-20">
+                        <div class="font-heading text-5xl font-black text-red-600">500+</div>
+                        <div class="text-gray-400 text-sm uppercase tracking-wider">Transformations</div>
+                    </div>
+
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-red-600/10 rounded-full rotate-slow pointer-events-none -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-32 bg-neutral-950 relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-red-800/5 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-600/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <span class="inline-block px-6 py-3 bg-red-600/10 border border-red-600/30 rounded-full text-red-500 font-bold text-sm uppercase tracking-widest mb-6">
+                    Choose Your Path
+                </span>
+                <h2 class="font-heading font-black text-5xl md:text-7xl mb-6">
+                    TRAINING <span class="text-gradient">PROGRAMS</span>
+                </h2>
+                <p class="text-gray-400 text-xl max-w-2xl mx-auto">
+                    Science-backed programs designed for every level. Pick your transformation and start your journey today.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 perspective-1000 items-start">
+                <!-- Basic Plan -->
+                <div class="program-card rounded-3xl p-8 tilt-card enhanced-card h-full">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="font-heading font-bold text-3xl text-white mb-2">BASIC</h3>
+                            <p class="text-gray-500 font-medium">4 Weeks Foundation</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-heading text-4xl font-black text-white">Rs. 8,500</div>
+                            <div class="text-red-600 text-sm font-bold">ONE TIME</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>4-Week Structured Training</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Customized Nutrition Plan</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Body Recomposition Setup</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Weekly Progress Tracking</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/94705732609?text=Start%20your%20transformation%20from%20here%20-%20I'm%20interested%20in%20the%20BASIC%20PLAN" target="_blank" 
+                       class="btn-primary w-full py-4 rounded-xl font-bold text-center block text-lg magnetic-btn">
+                        START WITH BASIC
+                    </a>
+                </div>
+
+                <!-- Standard Plan -->
+                <div class="program-card featured rounded-3xl p-8 tilt-card enhanced-card transform md:-translate-y-8 relative h-full">
+                    <div class="popular-badge">
+                        MOST POPULAR
+                    </div>
+                    
+                    <div class="flex justify-between items-start mb-8 mt-4">
+                        <div>
+                            <h3 class="font-heading font-bold text-3xl text-white mb-2">STANDARD</h3>
+                            <p class="text-gray-500 font-medium">8 Weeks Advanced</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-heading text-4xl font-black text-white">Rs. 15,000</div>
+                            <div class="text-red-600 text-sm font-bold">ONE TIME</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>8-Week Periodized Training</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Advanced Nutrition Strategy</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Supplement Guidance</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Daily Progress Monitoring</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>1:1 Video Consultation</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Priority Support</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/94705732609?text=Start%20your%20transformation%20from%20here%20-%20I'm%20interested%20in%20the%20STANDARD%20PLAN" target="_blank" 
+                       class="btn-primary w-full py-4 rounded-xl font-bold text-center block text-lg magnetic-btn shadow-lg shadow-red-600/30">
+                        GET STANDARD PLAN
+                    </a>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="program-card rounded-3xl p-8 tilt-card enhanced-card h-full">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="font-heading font-bold text-3xl text-white mb-2">PREMIUM</h3>
+                            <p class="text-gray-500 font-medium">12 Weeks Elite</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-heading text-4xl font-black text-white">Rs. 30,000</div>
+                            <div class="text-red-600 text-sm font-bold">ONE TIME</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>12-Week Elite System</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Elite Fat Loss Strategy</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Full Recomposition Protocol</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Supplement Optimization</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Video Consultations</span>
+                        </div>
+                        <div class="check-item flex items-center gap-4 text-gray-400 p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center">
+                                <i class="fas fa-check text-red-600 text-sm"></i>
+                            </div>
+                            <span>Priority 24/7 Support</span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/94705732609?text=Start%20your%20transformation%20from%20here%20-%20I'm%20interested%20in%20the%20PREMIUM%20PLAN" target="_blank" 
+                       class="btn-primary w-full py-4 rounded-xl font-bold text-center block text-lg magnetic-btn">
+                        GO PREMIUM
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-20 flex flex-wrap justify-center gap-8 items-center opacity-60">
+                <div class="flex items-center gap-2 hover:opacity-100 transition-opacity cursor-pointer">
+                    <i class="fas fa-shield-alt text-2xl text-red-600"></i>
+                    <span class="text-sm font-medium">Secure Payment</span>
+                </div>
+                <div class="flex items-center gap-2 hover:opacity-100 transition-opacity cursor-pointer">
+                    <i class="fas fa-undo text-2xl text-red-600"></i>
+                    <span class="text-sm font-medium">7-Day Money Back</span>
+                </div>
+                <div class="flex items-center gap-2 hover:opacity-100 transition-opacity cursor-pointer">
+                    <i class="fas fa-headset text-2xl text-red-600"></i>
+                    <span class="text-sm font-medium">24/7 Support</span>
+                </div>
+                <div class="flex items-center gap-2 hover:opacity-100 transition-opacity cursor-pointer">
+                    <i class="fas fa-certificate text-2xl text-red-600"></i>
+                    <span class="text-sm font-medium">Certified Coach</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Results Section -->
+    <section id="clients" class="py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-red-600/5 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <span class="inline-block px-6 py-3 bg-red-600/10 border border-red-600/30 rounded-full text-red-500 font-bold text-sm uppercase tracking-widest mb-6">
+                    Real Results
+                </span>
+                <h2 class="font-heading font-black text-5xl md:text-7xl mb-6">
+                    CLIENTS THAT <span class="text-gradient">WORK WITH ME</span>
+                </h2>
+                <p class="text-gray-400 text-xl max-w-2xl mx-auto">
+                    Science + Consistency = Unstoppable Results. See what my clients have achieved.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="transform-card group enhanced-card">
+                    <img src="Photos/Client .png" alt="Client Transformation" class="w-full h-96 object-cover">
+                    <div class="transform-overlay">
+                        <div class="font-heading font-bold text-2xl text-white mb-2">Fat Loss + Hypertrophy</div>
+                        
+                    </div>
+                    <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        12 WEEKS
+                    </div>
+                </div>
+
+                <div class="transform-card group enhanced-card">
+                    <img src="Photos/client.png" alt="Client Transformation" class="w-full h-96 object-cover">
+                    <div class="transform-overlay">
+                        <div class="font-heading font-bold text-2xl text-white mb-2">Fat Loss Progress</div>
+                        
+                    </div>
+                    <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        16 WEEKS
+                    </div>
+                </div>
+
+                <div class="transform-card group enhanced-card">
+                    <img src="Photos/client (1).png" alt="Client Transformation" class="w-full h-96 object-cover">
+                    <div class="transform-overlay">
+                        <div class="font-heading font-bold text-2xl text-white mb-2">Fat loss</div>
+                        
+                    </div>
+                    <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        4 WEEKS
+                    </div>
+                </div>
+
+                <div class="transform-card group enhanced-card">
+                    <img src="Photos/client (2).png" alt="Client Transformation" class="w-full h-96 object-cover">
+                    <div class="transform-overlay">
+                        <div class="font-heading font-bold text-2xl text-white mb-2">Hypertrophy Progress</div>
+                        
+                    </div>
+                    <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        8 WEEKS
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="https://wa.me/94705732609?text=Start%20your%20transformation%20from%20here" target="_blank" 
+                   class="inline-flex items-center gap-3 text-red-600 font-bold text-xl hover:text-red-500 transition-colors group bg-black/50 px-8 py-4 rounded-full border border-red-600/30 hover:border-red-600">
+                    <span>Start Your Transformation Now</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-3 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-neutral-950 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-30"></div>
+        
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block px-6 py-3 bg-red-600/10 border border-red-600/30 rounded-full text-red-500 font-bold text-sm uppercase tracking-widest mb-4">
+                    Testimonials
+                </span>
+                <h2 class="font-heading font-black text-4xl md:text-5xl mb-4">
+                    WHAT CLIENTS <span class="text-gradient">SAY</span>
+                </h2>
+                <p class="text-gray-400">Real stories from real transformations</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl p-8 hover:border-red-600/50 transition-all duration-300 hover:-translate-y-2 enhanced-card">
+                    <div class="flex text-red-600 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic leading-relaxed">"Saviru changed my life. Lost 15kg in 3 months and gained confidence I never had. The personalized approach makes all the difference."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center font-bold text-white">M</div>
+                        <div>
+                            <div class="font-bold text-white">Shanaka</div>
+                            <div class="text-sm text-gray-500">Premium Plan</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl p-8 hover:border-red-600/50 transition-all duration-300 hover:-translate-y-2 enhanced-card">
+                    <div class="flex text-red-600 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic leading-relaxed">"Finally found a coach who understands women's fitness. The nutrition plan was game-changing. Best investment I've made."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center font-bold text-white">S</div>
+                        <div>
+                            <div class="font-bold text-white">Dushani</div>
+                            <div class="text-sm text-gray-500">Standard Plan</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl p-8 hover:border-red-600/50 transition-all duration-300 hover:-translate-y-2 enhanced-card">
+                    <div class="flex text-red-600 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic leading-relaxed">"Went from skinny to muscular in 3 months. The premium plan is worth every rupee. Professional, dedicated, results-driven."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center font-bold text-white">K</div>
+                        <div>
+                            <div class="font-bold text-white">Kasun</div>
+                            <div class="text-sm text-gray-500">Premium Plan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-red-600/5 to-transparent"></div>
+        
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div>
+                <span class="inline-block px-6 py-3 bg-red-600/10 border border-red-600/30 rounded-full text-red-500 font-bold text-sm uppercase tracking-widest mb-6">
+                    Start Today
+                </span>
+                <h2 class="font-heading font-black text-5xl md:text-7xl mb-6">
+                    READY TO <span class="text-gradient">TRANSFORM?</span>
+                </h2>
+                <p class="text-gray-400 text-xl mb-12 max-w-2xl mx-auto">
+                    Stop waiting for Monday. Your transformation starts with a single message. Join the community of champions today.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <a href="https://wa.me/94705732609?text=Start%20your%20transformation%20from%20here" target="_blank" 
+                       class="group p-8 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl hover:border-red-600/50 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:shadow-red-600/10 enhanced-card">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i class="fab fa-whatsapp text-3xl text-green-500"></i>
+                        </div>
+                        <div class="font-heading font-bold text-xl text-white mb-1">WhatsApp</div>
+                        <div class="text-gray-500">+94 70 573 2609</div>
+                    </a>
+                    
+                    <a href="mailto:savirutharuka0406@gmail.com" 
+                       class="group p-8 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl hover:border-red-600/50 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:shadow-red-600/10 enhanced-card">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-red-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i class="fas fa-envelope text-3xl text-red-500"></i>
+                        </div>
+                        <div class="font-heading font-bold text-xl text-white mb-1">Email</div>
+                        <div class="text-gray-500">savirutharuka0406@gmail.com</div>
+                    </a>
+                    
+                    <div class="group p-8 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl hover:border-red-600/50 transition-all duration-300 hover:-translate-y-3 enhanced-card">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gray-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i class="fas fa-map-marker-alt text-3xl text-gray-400"></i>
+                        </div>
+                        <div class="font-heading font-bold text-xl text-white mb-1">Location</div>
+                        <div class="text-gray-500">Sri Lanka</div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center gap-6">
+                    <a href="https://www.instagram.com/savirutharuka_07/" target="_blank" 
+                       class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white hover:scale-110 hover:rotate-6 transition-all shadow-lg shadow-purple-600/30">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@mr_alaya_0519" target="_blank" 
+                       class="w-16 h-16 rounded-2xl bg-white text-black flex items-center justify-center hover:scale-110 hover:-rotate-6 transition-all shadow-lg">
+                        <i class="fab fa-tiktok text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/10 bg-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-red-600/5 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="font-heading font-black text-4xl logo-text">
+                    <span class="text-white">ST</span><span class="text-red-600"> ATHLETE</span>
+                </div>
+                
+                <div class="flex gap-8 text-sm text-gray-500">
+                    <a href="#home" class="hover:text-red-600 transition-colors">Home</a>
+                    <a href="#programs" class="hover:text-red-600 transition-colors">Programs</a>
+                    <a href="#clients" class="hover:text-red-600 transition-colors">Clients</a>
+                    <a href="#contact" class="hover:text-red-600 transition-colors">Contact</a>
+                </div>
+
+                <div class="text-sm text-gray-600">
+                    © 2026 ST ATHLETE. All rights reserved.
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-white/5 text-center">
+                <p class="text-gray-700 text-sm">Certified: IQN CPD Bodybuilding & Nutrition | International Diploma in Fitness & Coaching</p>
+                <p class="text-gray-800 text-xs mt-2">Undergraduate in Sport & Exercise Science</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-8">
+                <h3 id="modal-title" class="font-heading font-bold text-3xl text-white">Login</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white transition-colors w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <form id="login-form" class="space-y-5">
+                <div class="group">
+                    <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Email</label>
+                    <input type="email" id="login-email" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div class="group">
+                    <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Password</label>
+                    <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 mt-6">
+                    <span id="login-text">LOGIN</span>
+                    <div id="login-spinner" class="spinner hidden"></div>
+                </button>
+                <p class="text-center text-gray-500">
+                    Don't have an account? <button type="button" onclick="switchMode('signup')" class="text-red-600 hover:underline font-bold">Sign up</button>
+                </p>
+            </form>
+
+            <form id="signup-form" class="space-y-4 hidden">
+                <div class="group">
+                    <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Full Name</label>
+                    <input type="text" id="signup-name" class="form-input" placeholder="John Doe" required>
+                </div>
+                <div class="group">
+                    <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Email</label>
+                    <input type="email" id="signup-email" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div class="group">
+                    <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Password</label>
+                    <input type="password" id="signup-password" class="form-input" placeholder="••••••••" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="group">
+                        <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Age</label>
+                        <input type="number" id="signup-age" class="form-input" placeholder="25">
+                    </div>
+                    <div class="group">
+                        <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Height (cm)</label>
+                        <input type="number" id="signup-height" class="form-input" placeholder="175">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="group">
+                        <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Weight (kg)</label>
+                        <input type="number" id="signup-weight" class="form-input" placeholder="70">
+                    </div>
+                    <div class="group">
+                        <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-red-500 transition-colors">Body Fat %</label>
+                        <input type="number" id="signup-bodyfat" class="form-input" placeholder="15">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 mt-6">
+                    <span id="signup-text">CREATE ACCOUNT</span>
+                    <div id="signup-spinner" class="spinner hidden"></div>
+                </button>
+                <p class="text-center text-gray-500">
+                    Already have an account? <button type="button" onclick="switchMode('login')" class="text-red-600 hover:underline font-bold">Login</button>
+                </p>
+            </form>
+
+            <div id="auth-error" class="mt-4 p-4 bg-red-600/10 border border-red-600/30 rounded-xl text-red-500 text-sm hidden"></div>
+        </div>
+    </div>
+
+    <!-- Dashboard Modal -->
+    <div id="dashboard-modal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="font-heading font-bold text-3xl text-white">My Account</h3>
+                <button onclick="closeDashboard()" class="text-gray-400 hover:text-white transition-colors w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center text-3xl font-black text-white shadow-lg shadow-red-600/30">
+                            <span id="user-initial">U</span>
+                        </div>
+                        <div>
+                            <h4 id="dashboard-name" class="font-heading font-bold text-2xl text-white">User Name</h4>
+                            <p id="dashboard-email" class="text-gray-500">user@email.com</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="stat-card text-center p-4 bg-black/30 rounded-xl">
+                            <div class="text-gray-400 text-xs mb-1 uppercase tracking-wider">Age</div>
+                            <div id="profile-age" class="font-heading text-2xl font-black text-white">-</div>
+                        </div>
+                        <div class="stat-card text-center p-4 bg-black/30 rounded-xl">
+                            <div class="text-gray-400 text-xs mb-1 uppercase tracking-wider">Height</div>
+                            <div id="profile-height" class="font-heading text-2xl font-black text-white">-</div>
+                        </div>
+                        <div class="stat-card text-center p-4 bg-black/30 rounded-xl">
+                            <div class="text-gray-400 text-xs mb-1 uppercase tracking-wider">Weight</div>
+                            <div id="profile-weight" class="font-heading text-2xl font-black text-white">-</div>
+                        </div>
+                        <div class="stat-card text-center p-4 bg-black/30 rounded-xl">
+                            <div class="text-gray-400 text-xs mb-1 uppercase tracking-wider">Body Fat</div>
+                            <div id="profile-bodyfat" class="font-heading text-2xl font-black text-white">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl p-6">
+                    <label class="block text-sm text-gray-400 mb-3 font-bold uppercase tracking-wider">My Notes</label>
+                    <textarea id="user-notes" class="form-input h-32 resize-none" placeholder="Add your personal notes, goals, or reminders here..."></textarea>
+                    <button onclick="saveNotes()" class="mt-4 btn-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                        <i class="fas fa-save"></i>
+                        SAVE NOTES
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-2xl p-6">
+                    <h4 class="font-heading font-bold text-xl text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-credit-card text-red-600"></i>
+                        Payment History
+                    </h4>
+                    <div id="payment-history" class="space-y-3">
+                        <div class="flex items-center justify-between p-4 bg-black/30 rounded-xl border border-white/5 hover:border-red-600/30 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center">
+                                    <i class="fas fa-receipt text-red-600"></i>
+                                </div>
+                                <div>
+                                    <div class="text-white font-bold">Basic Plan</div>
+                                    <div class="text-gray-500 text-sm">Jan 15, 2026</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-red-500 font-bold">Rs. 8,500</div>
+                                <div class="text-green-500 text-xs flex items-center gap-1">
+                                    <i class="fas fa-check-circle"></i> Paid
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="https://wa.me/94705732609?text=Hi%20Coach,%20I%20have%20a%20question" target="_blank" 
+                       class="flex-1 bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-center transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        CONTACT COACH
+                    </a>
+                    <button onclick="logout()" class="px-6 py-4 border-2 border-red-600 text-red-600 rounded-xl font-bold hover:bg-red-600 hover:text-white transition-all flex items-center gap-2">
+                        <i class="fas fa-sign-out-alt"></i>
+                        LOGOUT
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create Particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const body = document.body;
+        const html = document.documentElement;
+        let scrollPosition = 0;
+
+        function openMobileMenu() {
+            scrollPosition = window.pageYOffset;
+            mobileMenu.classList.add('active');
+            body.classList.add('menu-open');
+            html.classList.add('menu-open');
+            
+            body.style.position = 'fixed';
+            body.style.top = `-${scrollPosition}px`;
+            body.style.width = '100%';
+            body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            body.classList.remove('menu-open');
+            html.classList.remove('menu-open');
+            
+            body.style.position = '';
+            body.style.top = '';
+            body.style.width = '';
+            body.style.overflow = '';
+            window.scrollTo(0, scrollPosition);
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                closeMobileMenu();
+                setTimeout(() => {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 300);
+            });
+        });
+
+        // Modal Functions
+        function openModal(mode) {
+            document.getElementById('auth-modal').classList.add('active');
+            switchMode(mode);
+        }
+
+        function closeModal() {
+            document.getElementById('auth-modal').classList.remove('active');
+            document.getElementById('auth-error').classList.add('hidden');
+        }
+
+        function switchMode(mode) {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const modalTitle = document.getElementById('modal-title');
+            
+            if (mode === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                modalTitle.textContent = 'Login';
+            } else {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                modalTitle.textContent = 'Sign Up';
+            }
+        }
+
+        // Demo Auth
+        let currentUser = null;
+        let userData = null;
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            
+            document.getElementById('login-text').classList.add('hidden');
+            document.getElementById('login-spinner').classList.remove('hidden');
+            
+            setTimeout(() => {
+                currentUser = { email: email, uid: 'demo123' };
+                userData = {
+                    name: 'Demo User',
+                    age: 25,
+                    height: 175,
+                    weight: 70,
+                    bodyFat: 15,
+                    notes: '',
+                    payments: [{ plan: 'Basic Plan', date: 'Jan 15, 2026', amount: 'Rs. 8,500', status: 'Paid' }]
+                };
+                updateUIForUser();
+                closeModal();
+                document.getElementById('login-text').classList.remove('hidden');
+                document.getElementById('login-spinner').classList.add('hidden');
+            }, 1000);
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const age = document.getElementById('signup-age').value;
+            const height = document.getElementById('signup-height').value;
+            const weight = document.getElementById('signup-weight').value;
+            const bodyFat = document.getElementById('signup-bodyfat').value;
+            
+            document.getElementById('signup-text').classList.add('hidden');
+            document.getElementById('signup-spinner').classList.remove('hidden');
+            
+            setTimeout(() => {
+                currentUser = { email: email, uid: 'demo123' };
+                userData = { name, age, height, weight, bodyFat, notes: '', payments: [] };
+                updateUIForUser();
+                closeModal();
+                document.getElementById('signup-text').classList.remove('hidden');
+                document.getElementById('signup-spinner').classList.add('hidden');
+            }, 1000);
+        });
+
+        function updateUIForUser() {
+            document.getElementById('auth-buttons').classList.add('hidden');
+            document.getElementById('user-menu').classList.remove('hidden');
+            document.getElementById('user-menu').classList.add('flex');
+            
+            document.getElementById('dashboard-name').textContent = userData.name;
+            document.getElementById('dashboard-email').textContent = currentUser.email;
+            document.getElementById('user-initial').textContent = userData.name.charAt(0).toUpperCase();
+            document.getElementById('profile-age').textContent = userData.age || '-';
+            document.getElementById('profile-height').textContent = userData.height ? userData.height + ' cm' : '-';
+            document.getElementById('profile-weight').textContent = userData.weight ? userData.weight + ' kg' : '-';
+            document.getElementById('profile-bodyfat').textContent = userData.bodyFat ? userData.bodyFat + '%' : '-';
+            document.getElementById('user-notes').value = userData.notes || '';
+        }
+
+        function openDashboard() {
+            document.getElementById('dashboard-modal').classList.add('active');
+        }
+
+        function closeDashboard() {
+            document.getElementById('dashboard-modal').classList.remove('active');
+        }
+
+        function saveNotes() {
+            userData.notes = document.getElementById('user-notes').value;
+            
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> SAVED!';
+            btn.style.background = '#10B981';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+            }, 2000);
+        }
+
+        function logout() {
+            currentUser = null;
+            userData = null;
+            document.getElementById('auth-buttons').classList.remove('hidden');
+            document.getElementById('user-menu').classList.add('hidden');
+            document.getElementById('user-menu').classList.remove('flex');
+            closeDashboard();
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // Magnetic Button Effect
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Tilt Card Effect
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        // Ripple Effect
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                const rect = this.getBoundingClientRect();
+                ripple.style.left = (e.clientX - rect.left) + 'px';
+                ripple.style.top = (e.clientY - rect.top) + 'px';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Intersection Observer - ONLY for sections AFTER hero
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Apply observer to all sections EXCEPT hero
+        document.querySelectorAll('section:not(#home)').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Navbar Background
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(0,0,0,0.95)';
+                navbar.style.padding = '0.75rem 1.5rem';
+            } else {
+                navbar.style.background = 'rgba(0,0,0,0.8)';
+                navbar.style.padding = '1rem 1.5rem';
+            }
+        });
+    </script>
+</body>
+</html>
